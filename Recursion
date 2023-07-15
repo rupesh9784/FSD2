@@ -60,6 +60,25 @@
        }
       return ans;
    }
+//leetcode 50
+class Solution {
+    public double myPow(double x, int n) {
+        if(n>0){
+            return rec(x,n);
+        } else {
+            double p = rec(x,-n);
+            return 1d/p;
+        }
+    }
+    public double rec(double x ,int n){
+        if(n==0) return 1D;
+        
+        double p = rec(x,n/2);
+        p = n%2==0 ? p*p : p*p*x;
+        return p;
+    }
+}
+
 // rec two call
  public static void rec(int n){
         if(n==0) return;
