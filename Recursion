@@ -1,0 +1,75 @@
+//L001
+ // printDecreasing
+   public static void printDecresasing(int n){
+      if(n==0) {
+        return;
+      }
+
+      System.out.println(n);
+      printDecresasing(n-1);  //faith 4 3 2 1
+   }
+
+//print Increasing
+ public static void printIncresasing(int n){
+       if(n==0) return;
+
+       printIncresasing(n-1);  //faith 4 3 2 1
+       System.out.println(n);
+   }
+
+// print decreasing increasing
+ public static void printDecIncresasing(int n){
+       if(n==0) return;
+
+       System.out.println(n);
+       printDecIncresasing(n-1);  //faith 4 3 2 1 1 2 3 4
+       System.out.println(n);
+   }
+
+// find factorial
+ public static int fact(int n){
+    if(n==0){
+        return 1;
+    }
+
+     int ans =  fact(n-1);
+     int fans = ans * n;
+     return fans;
+  }
+
+*************************************
+//L002
+// power Linear
+  public static int powLo(int x , int n){
+       if(n==0) return 1;
+        
+       int nm1 = powLo( x , n-1);
+       
+      return nm1 * x;
+   }
+
+// power logarithmic
+
+  public static int powLo(int x , int n){
+       if(n==0) return 1;
+        
+       int nb2 = powLo( x , n/2);
+       int ans = nb2 * nb2;
+       if(n%2 == 1){
+        ans = ans *x;
+       }
+      return ans;
+   }
+// rec two call
+ public static void rec(int n){
+        if(n==0) return;
+
+        System.out.print(n+" ");
+        rec(n-1);
+        System.out.print(n+" ");
+        rec(n-1);
+        System.out.print(n+" ");
+
+    }
+
+
