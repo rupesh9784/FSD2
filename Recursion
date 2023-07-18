@@ -90,5 +90,66 @@ class Solution {
         System.out.print(n+" ");
 
     }
+******************************************************
+//L003
+
+//display array
+ public static void main(String[] args) {
+        int[] arr = {10,20,30,40,50,60,70};
+
+       displayArr(arr , 0);  //call 
+    }
+    public static void displayArr(int[] arr ,int i ){
+        if(i == arr.length) return;
+     
+        System.out.print(arr[i] +" ");
+        displayArr(arr, i+1);  //call
+    }
+
+//display array in reverse Order
+
+public static void main(String[] args) {
+        int[] arr = {10,20,30,40,50,60,70};
+
+       displayRevArr(arr , 0);  //call 
+    }
+    public static void displayRevArr(int[] arr ,int i ){
+        if(i == arr.length) return;
+     
+        displayRevArr(arr, i+1);  //call
+        System.out.print(arr[i] +" ");
+    }
+
+// find max element
+ public static void main(String[] args) {
+        int[] arr = {2,23,58,34,12};
+        int ans = maxELement(arr , 0);
+        System.out.println(ans);
+    }
+    public static int maxELement(int[] arr , int idx){
+       if(idx == arr.length) {
+         return Integer.MIN_VALUE;
+       }
+
+       int val = maxELement(arr , idx+1);
+       if(arr[idx] > val) return arr[idx];
+       else return val;
+    }
+
+//find first Occurence of an element
+public static void main(String[] args) {
+        int[] arr = {3,2,5,2,2,6};
+        int x = 2;
+        int ans = firstOccurence(arr , 0 , x);
+        System.out.println(ans);
+    }
+    public static int firstOccurence(int[] arr,int idx,int x){
+        if(idx==arr.length) return -1; 
+        int ans = firstOccurence(arr, idx+1, x);
+        if(arr[idx] == x) {
+            return idx;
+        }
+        return ans;
+    }
 
 
