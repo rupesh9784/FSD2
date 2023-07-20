@@ -179,3 +179,37 @@ public class FindAllInd {
 }
 }
 
+//subsequence
+import java.util.* ;
+import java.io.*; 
+import java.util.ArrayList;
+
+class Solution {
+    public static ArrayList<String> subsequences(String str) {
+        // Write your code here
+         ArrayList<String> ans =   rec(str);
+          ans.remove(0);
+        return ans; 
+    }
+    public static ArrayList<String> rec(String str){
+       if(str.length() == 0){
+          ArrayList<String> base = new ArrayList<>();
+          base.add("");
+          return base;
+       }
+
+       char ch = str.charAt(0);
+       String ss = str.substring(1);
+       ArrayList<String> faith =  rec(ss);
+       ArrayList<String> ans = new ArrayList<>();
+       for(String s : faith){
+           ans.add(s);
+       }
+       for(String s : faith){
+           ans.add(ch + s);
+       }
+        return ans; 
+    }
+  
+}
+
