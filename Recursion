@@ -179,6 +179,8 @@ public class FindAllInd {
 }
 }
 
+
+//L005
 //subsequence
 import java.util.* ;
 import java.io.*; 
@@ -210,6 +212,94 @@ class Solution {
        }
         return ans; 
     }
-  
+
+//Stair Path
+import java.util.*;
+public class StairP {
+    public static void main(String[] args) {
+        int n  = 4;
+        ArrayList<String> path =  rec(n);
+        System.out.println(path);
+    }
+
+    public static ArrayList<String> rec(int n){
+        if(n<0) return new ArrayList<>();
+        if(n ==0){
+        ArrayList<String> base = new ArrayList<>();
+        base.add("");
+        return base;
+       }   
+       ArrayList<String> path1 =   rec(n-1);
+        ArrayList<String> path2 =   rec(n-2);
+        ArrayList<String> path3 =   rec(n-3);
+        ArrayList<String> ans = new ArrayList<>();
+        for(String s : path1) ans.add("1" + s);  
+        for(String s : path2) ans.add("2" + s);
+        for(String s : path3) ans.add("3" + s);
+        
+        return ans;
+    }
+}
+
+//L006
+
+//Maze path
+import java.util.*;
+public class Maze {
+    public static void main(String[] args) {
+        int n = 3;
+        ArrayList<String> fans = mazePath(0 , 0 , n-1 , n-1);
+        System.out.println(fans);
+    }
+    public static ArrayList<String> mazePath(int sr ,int sc , int dr , int dc){
+      if(sr>dr || sc > dc) return new ArrayList<>();
+      if(sr == dr && sc == dc){
+       ArrayList<String> base = new ArrayList<>();
+       base.add("");
+       return base;
+      }
+      ArrayList<String> hor =  mazePath(sr , sc+1 , dr,dc);
+      ArrayList<String> ver= mazePath(sr+1 , sc , dr,dc);
+      ArrayList<String> ans = new ArrayList<>();
+      for(String s : hor){
+        ans.add("h" + s);
+      }
+      for(String s : ver){
+        ans.add("v" + s);
+      }
+       return ans; 
+    }
+}
+
+//Bottom to top apprach
+//subsequence
+import java.util.* ;
+import java.io.*; 
+import java.util.ArrayList;
+
+class Solution {
+    public static ArrayList<String> subsequences(String str) {
+        ArrayList<String> collect = new ArrayList<>();
+         rec(str , "" ,collect); //call
+         return collect;
+        
+    }
+    public static void rec(String str,String ans,ArrayList<String> collect){
+        if(str.length() == 0){
+            if(ans != ""){
+               collect.add(ans);
+            }
+           return; 
+        }
+        String ss = str.substring(1);
+        char ch = str.charAt(0);
+         rec(ss ,ans , collect );  //exclude
+         rec(ss ,ans+ch,collect ); //include
+        
+    }
+}
+
+
+
 }
 
