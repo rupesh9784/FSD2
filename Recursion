@@ -330,3 +330,89 @@ class Solution {
     
 }
 
+//L008
+//rat in a maze path
+class Solution {
+    public static ArrayList<String> findPath(int[][] m, int n) {
+        // Your code here
+        ArrayList<String> collect = new ArrayList<>();
+        rec(0,0,n-1, "" , m , collect);
+        return collect;
+        
+    }
+    public static void rec(int sr , int sc , int dest, String ans 
+    ,int[][] arr , ArrayList<String> collect ){
+        if(sr<0 || sc<0 || sr == dest+1 || sc == dest + 1 || arr[sr][sc] == 0){
+            return ;
+        }
+        if(sr==dest && sc==dest){
+            collect.add(ans);
+            return;
+        }
+        
+        arr[sr][sc] = 0;  //mark
+        rec(sr+1,sc,dest,ans+"D", arr , collect);  //down
+        rec(sr,sc-1,dest,ans+"L", arr , collect);  //left
+        rec(sr,sc+1,dest,ans+"R", arr , collect);  //right
+        rec(sr-1,sc,dest,ans+"U", arr , collect);  //right
+        arr[sr][sc] = 1; //unmark
+        
+    }
+    
+}
+
+//n queen
+
+class Solution{
+    static ArrayList<ArrayList<Integer>> nQueen(int n) {
+        // code here
+        ArrayList<ArrayList<Integer>> collect = new ArrayList<>();
+        ArrayList<Integer> ans = new ArrayList<>();
+        int[][] arr = new int[n][n];
+        rec(0 ,n, arr , ans , collect);
+        return collect;
+        
+    }
+    public static void rec(int r ,int n, int[][] arr,ArrayList<Integer> ans,ArrayList<ArrayList<Integer>> collect){
+      if(r==n){
+          ArrayList<Integer> a = new ArrayList<>(ans);
+          collect.add(a);
+          return;
+      }
+        
+      for(int c = 0; c<n; c++){
+        if(isQueenPlaced(arr,r,c)){
+            arr[r][c] = 1; //mark
+            ans.add(c+1);
+            rec(r+1 ,n,arr,ans,collect);
+            arr[r][c] = 0; //unmark
+            ans.remove(ans.size()-1);
+            
+        } 
+      }  
+        
+    }
+    
+    static boolean isQueenPlaced(int[][] arr , int i , int j){
+        //left
+        for(int c = j-1; c>=0; c--){
+            if(arr[i][c] == 1) return false;
+        }
+        //rightdiag
+        for(int r=i-1,c=j+1 ; r>=0 && c<arr.length; r--,c++){
+            if(arr[r][c] == 1) return false;
+        }
+        //up
+        for(int r = i-1; r>=0; r--){
+            if(arr[r][j] == 1) return false;
+        }
+        //leftdiag
+        for(int r=i-1,c=j-1 ; r>=0 && c>=0; r--,c--){
+            if(arr[r][c] == 1) return false;
+        }
+        
+        return true;
+        
+    }
+}
+
