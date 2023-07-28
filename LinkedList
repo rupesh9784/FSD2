@@ -1,1 +1,60 @@
 //L001
+package fsd2.Recursion.LinkedList;
+class Node{
+      int val;
+      Node next;
+      Node(int v){
+        val = v;
+      }  
+    }
+class MyLinkedList{
+     Node head;
+     int s;
+     MyLinkedList(){
+        head = null;
+        s= 0;
+     }
+     public void display(){
+        Node temp  = head;
+        while(temp != null){
+            System.out.print(temp.val+" ");
+            temp = temp.next;
+        }
+       System.out.println();
+     }
+     public void addAtHead(int v){
+        Node n = new Node(v);
+        if(s==0){
+            head = n;
+        } else {
+            n.next = head;
+            head = n;
+        }
+        s++;
+     }
+     public void addAtTail(int v) {
+        Node n = new Node(v);
+        if(head==null){
+            head = n;
+        }else{
+          Node temp = head;
+          while(temp.next != null){
+            temp = temp.next;
+          }
+          temp.next = n;
+        }
+        s++;
+    } 
+   }
+public class IntroLL {
+    public static void main(String[] args) {
+        MyLinkedList LL = new MyLinkedList();
+        LL.addAtHead(10);
+        LL.addAtHead(20);
+        LL.addAtHead(30);
+        LL.display();
+        LL.addAtTail(40);
+        LL.addAtTail(50);
+        LL.display();
+    }
+}
