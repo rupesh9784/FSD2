@@ -60,3 +60,92 @@ public class IntroLL {
 }
 
 
+//L002
+
+//Leetcode 707
+class Node{
+    int val;
+    Node next;
+    Node(int v){
+      val = v;
+    }  
+  }
+class MyLinkedList {
+   Node head;
+   int s;
+   public MyLinkedList(){
+      head = null;
+      s= 0;
+   }
+   public void display(){
+      Node temp  = head;
+      while(temp != null){
+          System.out.print(temp.val+" ");
+          temp = temp.next;
+      }
+     System.out.println();
+   }
+   public void addAtHead(int v){
+      Node n = new Node(v);
+      if(s==0){
+          head = n;
+      } else {
+          n.next = head;
+          head = n;
+      }
+      s++;
+   }
+   public void addAtTail(int v) {
+      Node n = new Node(v);
+      if(head==null){
+          head = n;
+      }else{
+        Node temp = head;
+        while(temp.next != null){
+          temp = temp.next;
+        }
+        temp.next = n;
+      }
+      s++;
+  } 
+  public void addAtIndex(int index, int val) {
+      if(index<0 || index>s){
+        return;
+      } else if(index==0) addAtHead(val);
+      else if(index == s) addAtTail(val);
+      else{
+       Node temp = head;
+       while(index-->1) temp = temp.next;
+       
+       Node n = new Node(val);
+       n.next = temp.next;
+      temp.next = n;
+       s++;
+      }
+  }
+  public int get(int index) {
+       if(index <0 || index>=s) return -1;
+       Node temp = head;
+       while(index-->0){
+        temp = temp.next;
+        
+       }
+       return temp.val;
+  }
+    
+    public void deleteAtIndex(int index) {
+        
+    }
+}
+
+/**
+ * Your MyLinkedList object will be instantiated and called as such:
+ * MyLinkedList obj = new MyLinkedList();
+ * int param_1 = obj.get(index);
+ * obj.addAtHead(val);
+ * obj.addAtTail(val);
+ * obj.addAtIndex(index,val);
+ * obj.deleteAtIndex(index);
+ */
+
+
