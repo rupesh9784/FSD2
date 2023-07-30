@@ -147,6 +147,21 @@ class MyLinkedList {
     }
 }
 
+//mid of the linkedlist
+class Solution {
+    public ListNode middleNode(ListNode head) {
+        ListNode slow = head;
+        ListNode fast = head;
+        while(fast != null && fast.next != null){
+            slow = slow.next;
+            fast =fast.next.next;
+        }
+        return slow;
+    }
+}
+
+
+
 /**
  * Your MyLinkedList object will be instantiated and called as such:
  * MyLinkedList obj = new MyLinkedList();
