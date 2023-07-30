@@ -1,5 +1,5 @@
 //L001
-package fsd2.Recursion.LinkedList;
+
 class Node{
       int val;
       Node next;
@@ -58,3 +58,5 @@ public class IntroLL {
         LL.display();
     }
 }
+
+
