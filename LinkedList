@@ -161,6 +161,97 @@ class Solution {
 }
 
 
+//***********************************************
+//L005
+
+//isCycle
+ boolean isCircular(Node head)
+    {
+
+   Node slow = head;
+   Node fast = head;
+   while(fast != null && fast.next != null){
+       slow = slow.next;
+       fast = fast.next.next;
+       if(slow == fast) return true;
+   }
+   return false;
+    }
+
+//Function to remove a loop in the linked list.
+    public static void removeLoop(Node head){
+        // code here
+        // remove the loop without losing any nodes
+         if(head == null || head.next == null) return;
+        Node slow = head , fast = head , prev = null;
+        while(fast != null && fast.next != null){
+             prev = slow;
+            slow = slow.next;
+            fast = fast.next.next;
+            if(slow == fast){
+                
+                Node curr = head;
+                while(curr != slow){
+                    prev = slow;
+                    curr = curr.next;
+                    slow = slow.next;
+                }
+                prev.next = null;
+                return;
+                
+            }
+        }
+    
+    }
+//isPlaindrome
+ public boolean isPalindrome(ListNode head) {
+        if(head == null || head.next == null) return true;
+        
+        ListNode s = head , f = head;
+        while(f != null && f.next != null && f.next.next != null){
+            s = s.next;
+            f = f.next.next;
+        }
+        
+        ListNode curr = s.next;
+        s.next = null;
+        
+        ListNode prev = null;
+        while(curr != null){
+            ListNode forw = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = forw;
+        }
+        ListNode p1 = head, p2 = prev;
+        while(p1 != null && p2 !=null){
+            if(p1.val != p2.val) return false;
+            p1 = p1.next;
+            p2 = p2.next;
+        }
+        return true;
+        
+    }
+
+// LinkedList cycle 2
+public ListNode detectCycle(ListNode head) {
+        if(head == null || head.next == null) return null;
+        ListNode slow = head , fast = head;
+        while(fast != null && fast.next != null){
+            slow = slow.next;
+            fast = fast.next.next;
+            if(slow == fast){
+                ListNode curr = head;
+                while(curr != slow){
+                    curr = curr.next;
+                    slow = slow.next;
+                }
+                return curr;
+                
+            }
+        }
+        return null;
+    }
 
 /**
  * Your MyLinkedList object will be instantiated and called as such:
